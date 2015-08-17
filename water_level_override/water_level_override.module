@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Water Level module file.
+ */
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function water_level_override_views_query_alter(&$view, &$query) {
+  $date = date("Y-m-d");
+  if ($view->name == 'water_level_statistics') {
+    switch($view->current_display) {
+      case 'block':
+        // Traverse through the 'where' part of the query.
+        foreach ($query->where as &$condition_group) {
+          foreach ($condition_group['conditions'] as &$condition) {
+            // If this is the part of the query filtering on title, change the
+            // condition to filter on node ID.
+            if ($condition['field'] == 'field_data_field_date_date.field_date_date_value') {
+              $condition = array(
+                'field' => 'field_data_field_date_date.field_date_date_value',
+                'value' => $date .'%',
+                'operator' => 'LIKE',
+              );
+            }
+          }
+        }
+        break;
+
+      case 'block_1':
+        $pre_date = date("d") -1;
+        $date = date("Y-m-" . $pre_date);
+        // Traverse through the 'where' part of the query.
+        foreach ($query->where as &$condition_group) {
+          foreach ($condition_group['conditions'] as &$condition) {
+            // If this is the part of the query filtering on title, change the
+            // condition to filter on node ID.
+            if ($condition['field'] == 'field_data_field_date_date.field_date_date_value') {
+              $condition = array(
+                'field' => 'field_data_field_date_date.field_date_date_value',
+                'value' => $date .'%',
+                'operator' => 'LIKE',
+              );
+            }
+          }
+        }
+        break;
+    }
+  }
+}

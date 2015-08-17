@@ -1,0 +1,5 @@
+name = Water Level Query Override
+description = Overrides Views query for dynamic date control.
+core = 7.x
+version = 7.x-1.0
+package = Custom
