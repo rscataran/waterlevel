@@ -24,7 +24,7 @@ Installation
 4. Put `water_level` and  `water_level_override` in modules\custom folder.
 5. Download `bluff` library and put the contents in sites\all\libraries\bluff. The file `bluff-min.js` should be in sites\all\libraries\bluff.
 6. Inside sites\all\libraries\bluff, copy `bluff-min.js` to the same folder and rename it to `bluff.js`.
-7. Using drush, enable `charts_graphs_bluff`, `water_level`, `water_level_override`, `views_ui` to resolve any dependencies.
+7. Using drush, enable `charts_graphs_bluff`, `water_level`, `water_level_override`, `views`, `views_ui` to resolve any dependencies.
 8. Clear all drupal cache.
 
 Note
